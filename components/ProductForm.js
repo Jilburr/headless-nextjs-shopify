@@ -29,6 +29,11 @@ export const ProductForm = ({ product }) => {
   const [selectedVariant, setSelectedVariant] = useState(allVariantOptions[0]);
   const [selectedOptions, setSelectedOptions] = useState(defaultValues);
 
+  function setOptions(name, value) {
+    setSelectedOptions((prevState) => {
+      return { ...prevState, [name]: value };
+    });
+  }
   return (
     <div className="rounded-2xl p-4 shadow-lg flex flex-col w-full md:w-1/3">
       <h2 className="text-2xl font-bold">{product.title}</h2>
@@ -41,8 +46,12 @@ export const ProductForm = ({ product }) => {
           name={name}
           values={values}
           selectedOptions={selectedOptions}
+          setOptions={setOptions}
         />
       ))}
+      <button className="bg-black rounded-lg text-white px-2 py-3 hover:bg-gray-800">
+        Add To Cart
+      </button>
     </div>
   );
 };
