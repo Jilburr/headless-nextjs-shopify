@@ -1,8 +1,10 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { formatter } from "../utils/helpers";
-import { ProductOptions } from "./ProductOptions";
+import ProductOptions from "./ProductOptions";
+import { CartContext } from "../context/shopContext";
 
-export const ProductForm = ({ product }) => {
+export default function ProductForm({ product }) {
+  const { addToCart } = useContext(CartContext);
   const allVariantOptions = product.variants.edges?.map((variant) => {
     const allOptions = {};
 
@@ -33,7 +35,18 @@ export const ProductForm = ({ product }) => {
     setSelectedOptions((prevState) => {
       return { ...prevState, [name]: value };
     });
+
+    const selection = {
+      ...selectedOptions,
+      [name]: value,
+    };
+    allVariantOptions.map((item) => {
+      if (JSON.stringify(item.options) === JSON.stringify(selection)) {
+        setSelectedVariant(item);
+      }
+    });
   }
+
   return (
     <div className="rounded-2xl p-4 shadow-lg flex flex-col w-full md:w-1/3">
       <h2 className="text-2xl font-bold">{product.title}</h2>
@@ -49,9 +62,14 @@ export const ProductForm = ({ product }) => {
           setOptions={setOptions}
         />
       ))}
-      <button className="bg-black rounded-lg text-white px-2 py-3 hover:bg-gray-800">
+      <button
+        onClick={() => {
+          addToCart(selectedVariant);
+        }}
+        className="bg-black rounded-lg text-white px-2 py-3 hover:bg-gray-800"
+      >
         Add To Cart
       </button>
     </div>
   );
-};
+}

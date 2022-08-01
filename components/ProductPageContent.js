@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ProductForm } from "./ProductForm";
+import ProductForm from "./ProductForm";
 
 export default function ProductPageContent({ product }) {
   return (

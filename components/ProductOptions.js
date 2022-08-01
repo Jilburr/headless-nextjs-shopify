@@ -1,9 +1,9 @@
-export const ProductOptions = ({
+export default function ProductOptions({
   name,
   values,
   selectedOptions,
   setOptions,
-}) => {
+}) {
   return (
     <fieldset>
       <legend className="text-xl font-semibold">{name}</legend>
@@ -39,4 +39,4 @@ export const ProductOptions = ({
       </div>
     </fieldset>
   );
-};
+}
