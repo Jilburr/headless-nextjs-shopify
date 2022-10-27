@@ -12,7 +12,6 @@ export default function shopProvider({ children }) {
   useEffect(() => {
     if (localStorage.checkout_id) {
       const cartObject = JSON.parse(localStorage.checkout_id);
-      console.log(cartObject);
 
       if (cartObject[0].id) {
         setCart([cartObject[0]]);
