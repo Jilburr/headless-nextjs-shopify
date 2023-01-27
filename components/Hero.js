@@ -16,7 +16,7 @@ export default function Hero() {
                 <p className="text-transparent bg-clip-text text-green-400 text-4xl sm:text-6xl md:text-7xl">Oil Bodega</p>
             </h1>
             <h2 className="mt-3 max-w-md mx-auto text-white sm:text-lg md:mt-5 md:text-xl md:max-x-3xl relative">
-                All the best olive oils
+                Discover the taste of authenticity with our olive oils
             </h2>
             <div className="mt-5 max-w-md mx-auto flex justify-center items-center md:mt-8 relative">
                 <a href="https://buildnextshop.com" className="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium py-3 border-transparent rounded-md text-white bg-gray-900 hover:bg-green-500">
