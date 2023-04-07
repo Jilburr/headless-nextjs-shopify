@@ -61,6 +61,36 @@ export default function shopProvider({ children }) {
     }
   }
 
+  async function incrementCartItem(item) {
+    let newCart = []
+
+    cart.map(cartItem => {
+      if (cartItem.id === item) {
+        cartItem.variantQuantity++
+        newCart = [...cart]
+      }
+    })
+    setCart(newCart)
+    const newCheckout = await updateCheckout(checkoutId, newCart)
+
+    localStorage.setItem("checkout_id", JSON.stringify([newCart, newCheckout]))
+  }
+
+  async function decrementCartItem(item) {
+    let newCart = []
+
+    cart.map(cartItem => {
+      if (cartItem.id === item) {
+        cartItem.variantQuantity--
+        newCart = [...cart]
+      }
+    })
+    setCart(newCart)
+    const newCheckout = await updateCheckout(checkoutId, newCart)
+
+    localStorage.setItem("checkout_id", JSON.stringify([newCart, newCheckout]))
+  }
+
   async function removeCartItem(itemToRemove) {
     const updatedCart = cart.filter((item) => item.id !== itemToRemove);
     setCart(updatedCart);
@@ -83,6 +113,8 @@ export default function shopProvider({ children }) {
         addToCart,
         checkoutUrl,
         removeCartItem,
+        incrementCartItem,
+        decrementCartItem
       }}
     >
       {children}

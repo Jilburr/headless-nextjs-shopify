@@ -8,7 +8,7 @@ import { CartContext } from "../context/shopContext";
 import { formatter } from "../utils/helpers";
 
 export default function MiniCart({ cart }) {
-  const { cartOpen, setCartOpen, checkoutUrl, removeCartItem } =
+  const { cartOpen, setCartOpen, checkoutUrl, removeCartItem, incrementCartItem, decrementCartItem } =
     useContext(CartContext);
   let cartTotal = 0;
   cart.map((item) => {
@@ -125,6 +125,10 @@ export default function MiniCart({ cart }) {
                                                 Remove
                                               </button>
                                             </div>
+                                          </div>
+                                          <div>
+                                            <button type="button" className="font-medium text-gray-500 hover:text-gray-800" onClick={() => incrementCartItem(product.id)}>+</button>
+                                            <button type="button" className="font-medium text-gray-500 hover:text-gray-800" onClick={() => decrementCartItem(product.id)}>-</button>
                                           </div>
                                         </div>
                                       </li>
